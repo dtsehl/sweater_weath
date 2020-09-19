@@ -1,0 +1,51 @@
+{
+  "data":
+    {"id": 1,
+    "type": "forecast",
+    "attributes":
+      {"id": 1,
+        "timezone": "America/Denver"
+        "location": "Denver, CO" # take from initial request and uppercase it
+        "current":
+          {"dt": 1600522916,
+            "sunrise": 1600522916,
+            "sunset": 1600522916,
+            "temp": 61.11, #comes in as float, convert to int
+            "feels_like": 55 # comes in as float, convert to int
+            "humidity": "23%", # comes in as float, convert string and add percent
+            "uvi": 7.04,
+            "visibility": "2 miles", # comes in as float as feet, convert to miles then string and add miles
+            "description": "broken clouds",
+            "icon": "04d"
+          },
+          "daily": [ # to have all of the days
+            {
+              "dt": 1600538400,
+              "sunrise": 1600519516,
+              "sunset": 1600563710,
+              "temp":
+                {:day=>79.72,
+                 :min=>59.45,
+                 :max=>85.41,
+                 :night=>78.19,
+                 :eve=>84.47,
+                 :morn=>59.45}
+              },
+              "description": "broken clouds",
+              "icon": "04d"
+              "rain": 5, #both rain and snow are optional
+              "snow": 5
+            },
+            {
+            "hourly": [
+              {
+                "dt": 1600516800,
+                "temp": 59.45,
+                  "weather": {[
+                    "id": 803
+                    "main": "Clouds",
+                    "description": "broken clouds",
+                    "icon": "04n"
+                  ]
+                  }
+              },
