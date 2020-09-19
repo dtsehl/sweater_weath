@@ -77,4 +77,5 @@ VCR.configure do |config|
   config.configure_rspec_metadata!
   config.filter_sensitive_data('MAP_KEY') { ENV['MAP_KEY'] }
   config.filter_sensitive_data('WEATHER_KEY') { ENV['WEATHER_KEY'] }
+  config.default_cassette_options = { record: :new_episodes }
 end
