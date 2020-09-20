@@ -45,6 +45,7 @@ GEM
     addressable (2.7.0)
       public_suffix (>= 2.0.2, < 5.0)
     arel (9.0.0)
+    bcrypt (3.1.16)
     bootsnap (1.4.8)
       msgpack (~> 1.0)
     builder (3.2.4)
@@ -134,7 +135,7 @@ GEM
     rb-fsevent (0.10.4)
     rb-inotify (0.10.1)
       ffi (~> 1.0)
-    regexp_parser (1.7.1)
+    regexp_parser (1.8.0)
     rspec-core (3.9.2)
       rspec-support (~> 3.9.3)
     rspec-expectations (3.9.2)
@@ -185,6 +186,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  bcrypt
   bootsnap (>= 1.1.0)
   byebug
   capybara
