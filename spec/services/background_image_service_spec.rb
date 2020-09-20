@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'Background Image Service' do
+RSpec.describe 'Background Image Service', :vcr do
   it 'can get a background image based on a query' do
     location = 'denver,co'
     background = BackgroundImageService.get_background(location)
