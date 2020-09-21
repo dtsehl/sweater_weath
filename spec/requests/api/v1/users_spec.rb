@@ -4,7 +4,6 @@ RSpec.describe 'Api::V1::Users', type: :request do
   describe 'User Registration API' do
     it 'can create a user with a POST request' do
       incorrect_user = create(:user)
-      # User.create!(email: 'false@false.com', password: 'false', password_confirmation: 'false')
       user_info = {
         email: 'user@user.com',
         password: 'password',
