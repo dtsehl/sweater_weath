@@ -6,7 +6,7 @@ describe ClimbingRoute do
     data = ClimbingRoutesService.get_routes(coords)
     location = 'denver,co'
     weather = WeatherService.get_weather(coords)
-    climbing_route = ClimbingRoute.new(data, location, weather)
+    climbing_route = ClimbingRoute.new(data, location, weather, coords)
 
     expect(climbing_route.id).to be_nil
     expect(climbing_route.location).to be_a(String)
