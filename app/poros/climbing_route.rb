@@ -24,8 +24,16 @@ class ClimbingRoute
     all_routes = []
     routes[:routes].each do |route|
       ending_coords = { lat: route[:latitude], lng: route[:longitude] }
-      all_routes << { name: route[:name], type: route[:type], rating: route[:stars], location: route[:location], distance_to_route: MapService.get_distance_between(starting_coords, ending_coords) }
+      pruned_coords = prune_coords(starting_coords, ending_coords)
+      all_routes << { name: route[:name], type: route[:type], rating: route[:stars], location: route[:location], distance_to_route: MapService.get_distance_between(pruned_coords) }
     end
     all_routes
+  end
+
+  def prune_coords(starting_coords, ending_coords)
+    pruned_coords = []
+    pruned_coords << starting_coords[:lat].to_s + ',' + starting_coords[:lng].to_s
+    pruned_coords << ending_coords[:lat].to_s + ',' + ending_coords[:lng].to_s
+    pruned_coords
   end
 end

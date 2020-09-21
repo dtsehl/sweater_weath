@@ -6,12 +6,10 @@ class MapService
     JSON.parse(response.body, symbolize_names: true)[:results][0][:locations][0][:latLng]
   end
 
-  def self.get_distance_between(starting_coords, ending_coords)
-    starting_coords = starting_coords[:lat].to_s + ',' + starting_coords[:lng].to_s
-    ending_coords = ending_coords[:lat].to_s + ',' + ending_coords[:lng].to_s
+  def self.get_distance_between(coords)
     response = conn.get 'directions/v2/route' do |f|
-      f.params['from'] = starting_coords
-      f.params['to'] = ending_coords
+      f.params['from'] = coords[0]
+      f.params['to'] = coords[1]
     end
     JSON.parse(response.body, symbolize_names: true)[:route][:distance]
   end
