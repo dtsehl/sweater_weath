@@ -1,9 +1,9 @@
 class ClimbingRoute
   attr_reader :id, :location, :forecast, :routes
 
-  def initialize(routes, location, weather)
+  def initialize(routes, location, weather, starting_coords)
     @forecast = prune_weather(weather)
-    @routes = prune_routes(routes)
+    @routes = prune_routes(routes, starting_coords)
     @location = capitalize_location(location)
   end
 
@@ -20,7 +20,10 @@ class ClimbingRoute
     {summary: weather[:current][:weather][0][:description], temperature: weather[:current][:temp].to_i}
   end
 
-  def prune_routes(routes)
+  def prune_routes(routes, starting_coords)
+    require "pry"; binding.pry
+    ending_coords = {lat: routes[:routes][0][:latitude], lng: routes[:routes][0][:longitude]}
     
+    data.without(:pressure, :dew_point, :clouds, :wind_speed, :wind_deg)
   end
 end
