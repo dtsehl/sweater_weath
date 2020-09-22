@@ -1,4 +1,5 @@
 class RoadTrip
+  include Capitalizeable
   attr_reader :id, :origin, :destination, :travel_time, :arrival_forecast
 
   def initialize(route_data, destination_weather_data, origin, destination)
@@ -25,12 +26,5 @@ class RoadTrip
     average_hours -= 1 if average_hours.positive?
     data = destination_weather_data[:hourly][average_hours]
     "#{data[:temp].to_i} deg, #{data[:weather][0][:description].capitalize}"
-  end
-
-  def capitalize_location(location)
-    split_location = location.split(',')
-    split_location[0].capitalize!
-    split_location[1].upcase!
-    split_location.join(', ')
   end
 end

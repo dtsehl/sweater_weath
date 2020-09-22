@@ -1,4 +1,5 @@
 class Forecast
+  include Capitalizeable
   attr_reader :id, :timezone, :current, :daily, :hourly, :place
 
   def initialize(data, location)
@@ -28,12 +29,5 @@ class Forecast
     data.map! do |hour|
       hour.without(:feels_like, :pressure, :humidity, :dew_point, :clouds, :visibility, :wind_speed, :wind_deg, :pop)
     end
-  end
-
-  def capitalize_location(location)
-    split_location = location.split(',')
-    split_location[0].capitalize!
-    split_location[1].upcase!
-    split_location.join(', ')
   end
 end
