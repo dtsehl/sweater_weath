@@ -1,24 +1,28 @@
-# README
+# Sweater Weather
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This application is for on a project in Module 3 of Turing School of Software and Design called [Sweater Weather(https://backend.turing.io/module3/projects/sweater_weather/)].
 
-Things you may want to cover:
+Its design is based on wireframes provided by a fictitious front end developer who requires certain payloads of JSON data to be returned after an HTTP request.
 
-* Ruby version
+### Data Returned
 
-* System dependencies
+This application exposes several end points which the previously mentioned front end developer might call on. Explanations for what JSON-formatted content it responds with after a successful request are below:
 
-* Configuration
+- GET /api/v1/forecast?location=city,state_abbreviation
+  * Weather data about the given location
+- GET /api/v1/backgrounds?location=city,state_abbreviation
+  * Data which includes an image URL which can be used as a background picture for the given location
+- POST /api/v1/users
+  * Information about a user which has been instantiated with proper attributes from the request
+- POST /api/v1/sessions
+  * Information about a user which has been verified by a properly-authenticated request
+- POST /api/v1/road_trip
+  * Road trip data which includes the origin, destination, travel time and forecast upon arriving at a destination
 
-* Database creation
+### Learning Goals Accomplished
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+* Expose an API that aggregates data from multiple external APIs
+* Expose an API that requires an authentication token
+* Expose an API for CRUD functionality
+* Determine completion criteria based on the needs of other developers
+* Research, select, and consume an API based on my needs as a developer
