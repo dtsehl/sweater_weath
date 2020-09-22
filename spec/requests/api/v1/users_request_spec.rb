@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe 'Api::V1::Users', type: :request do
-  describe 'User Registration API' do
+  describe 'User Registration API', :vcr do
     it 'can create a user with a POST request' do
       incorrect_user = create(:user)
       user_info = {
