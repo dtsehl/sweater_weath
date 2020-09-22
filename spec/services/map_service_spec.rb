@@ -13,4 +13,15 @@ RSpec.describe 'Map Service', :vcr do
     expect(location[:lat]).to eq(41.883229)
     expect(location[:lng]).to eq(-87.632398)
   end
+  it 'can get the route between an origin and destination' do
+    origin = 'denver,co'
+    destination = 'pueblo,co'
+
+    route_data = MapService.get_route_between(origin, destination)
+
+    expect(route_data).to be_a(Hash)
+    expect(route_data[:route][:time]).to be_a(Integer)
+    expect(route_data[:route][:time]).to be_a(Integer)
+    expect(route_data[:route][:locations].last[:latLng]).to be_a(Hash)
+  end
 end
