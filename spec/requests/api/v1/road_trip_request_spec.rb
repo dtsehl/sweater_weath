@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe 'Api::V1::RoadTrip', type: :request do
-  describe 'Road Trip API' do
+  describe 'Road Trip API', :vcr do
     it 'can create a road trip with valid a POST request' do
       user = create(:user)
       road_trip_info = {
@@ -19,33 +19,44 @@ RSpec.describe 'Api::V1::RoadTrip', type: :request do
 
       json = JSON.parse(response.body, symbolize_names: true)
 
-      require "pry"; binding.pry
-
-      # user = User.last
-      #
-      # expect(json[:data][:type]).to eq('users')
-      # expect(json[:data][:id].to_i).to eq(user.id)
-      # expect(json[:data][:attributes][:email]).to eq(user.email)
-      # expect(json[:data][:attributes][:api_key]).to eq(user.api_key)
-      # expect(user.password).to be_nil
-      #
-      # expect(json[:data][:attributes][:email]).to_not eq(incorrect_user.email)
-      # expect(json[:data][:attributes][:api_key]).to_not eq(incorrect_user.api_key)
+      expect(json[:data][:type]).to eq('road_trip')
+      expect(json[:data][:attributes][:origin]).to eq('Denver, CO')
+      expect(json[:data][:attributes][:destination]).to eq('Pueblo, CO')
+      expect(json[:data][:attributes][:travel_time]).to be_a(String)
+      expect(json[:data][:attributes][:arrival_forecast]).to be_a(String)
     end
-    xit 'returns a 401 status code if an error occurs' do
-      user_info = {
-        email: 'user@user.com'
+    it 'returns a 401 status code if api key is missing' do
+      road_trip_info = {
+        origin: 'denver,co',
+        destination: 'pueblo,co'
       }
 
-      post  '/api/v1/users',
-            params: user_info.to_json,
+      post  '/api/v1/road_trip',
+            params: road_trip_info.to_json,
             headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' }
 
-      expect(response).to have_http_status(400)
+      expect(response).to have_http_status(401)
 
       json = JSON.parse(response.body, symbolize_names: true)
 
-      expect(json[:body]).to eq("Password digest can't be blank and Password can't be blank")
+      expect(json[:body]).to eq('API key invalid or not given')
+    end
+    it 'returns a 401 status code if api key is invalid' do
+      road_trip_info = {
+        origin: 'denver,co',
+        destination: 'pueblo,co',
+        api_key: 'not_an_api_key'
+      }
+
+      post  '/api/v1/road_trip',
+            params: road_trip_info.to_json,
+            headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' }
+
+      expect(response).to have_http_status(401)
+
+      json = JSON.parse(response.body, symbolize_names: true)
+
+      expect(json[:body]).to eq('API key invalid or not given')
     end
   end
 end
