@@ -19,7 +19,10 @@ RSpec.describe 'Weather Service', :vcr do
     destination_weather_data = WeatherService.get_destination_forecast(route_data)
 
     expect(destination_weather_data).to be_a(Hash)
-
-    require 'pry'; binding.pry
+    
+    expect(destination_weather_data[:current]).to have_key(:sunrise)
+    expect(destination_weather_data[:current]).to have_key(:sunset)
+    expect(destination_weather_data[:current]).to have_key(:temp)
+    expect(destination_weather_data[:current]).to have_key(:pressure)
   end
 end
