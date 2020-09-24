@@ -93,3 +93,5 @@ RSpec.describe 'Api::V1::Users', type: :request do
     end
   end
 end
+
+# this is for triggering a build with codeship
