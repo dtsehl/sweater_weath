@@ -1,6 +1,6 @@
 # Sweater Weather
 
-This application is for on a project in Module 3 of Turing School of Software and Design called [Sweater Weather(https://backend.turing.io/module3/projects/sweater_weather/)].
+This application is for on a project in Module 3 of Turing School of Software and Design called [Sweater Weather](https://backend.turing.io/module3/projects/sweater_weather).
 
 Its design is based on wireframes provided by a fictitious front end developer who requires certain payloads of JSON data to be returned after an HTTP request.
 
